@@ -63,45 +63,57 @@ If the room with the given name doesn't exist a new one will be created and auto
 ## Available room methods
   
 ### replaceVideoTrack
-    VideoRoom.replaceVideoTrack(videoTrack)
-  videoTrack can be replaced if it exists otherwise you will get error. 
+
+It is possible to replace the video track on the go, for example change the camera stream with the screen one
+
+    videoRoom.replaceVideoTrack(newVideoTrack)
+  
 
 ### addVideoTrack
-    VideoRoom.addVideoTrack(videoTrack)
-  videoTrack can be added if there is no videoTrack in a stream.\
-  if we try to add videoTrack when there is active videoTrack\
-  in our stream we will get error.
+
+If there is no video track added to the room, it can be added later.
+If the track already addded it will throw an error.
+
+    videoRoom.addVideoTrack(videoTrack)
   
 ### removeVideoTrack
-    VideoRoom.addVideoTrack(videoTrack)
- videoTrack can be removed the passed videoTrack exists on our stream.
+
+Previously passed video track can be removed from the room.
+
+    videoRoom.removeVideoTrack(videoTrack)
   
 ### sendInfo
-If you are in room you can send update message about some status you have to room members.
 
-    VideoRoom.sendInfo(userId, roomName, isPresenter, infoData)
+It is possible to send an update message about some status the room members should be aware of
+
+    videoRoom.sendInfo(userId, roomName, isPresenter, infoData)
     
 - userId: type: string, user id 
-- roomName: type: string, room name user in
-- isPresenter: type: boolean, is user have presenter flag
-- infoData: type: object, you can send whatever you want
+- roomName: type: string, room name the user is joined
+- isPresenter: type: boolean, whether the user is presenter or not
+- infoData: type: object,sny object to be sent
 
 ### getParticipants
-    VideoRoom.getParticipants()
-This will return `VideoRoom` participants array
+
+Returns an array of joined participants of the room
   
+    videoRoom.getParticipants()
+
 ## Events
 Events can be listened by attaching listeners to `VideoRoom`
 
 ### infoReceived
-This will be fired when someone in the room use `sendInfo`
+This will be fired when someone in the room sends a an update over `sendInfo`
 
-    VideoRoom.on("infoRecieved", (infoData) => {})
-### participantJoined
-This will be fired when someone joined to room
+    videoRoom.on('infoRecieved', (infoData) => {})
     
-    VideoRoom.on("participantJoined", (participant) => {})
 ### participantJoined
-This will be fired when someone leaved room
 
-    VideoRoom.on("participantDisconnected", (participant) => {})
+This will be fired when someone has joined to room
+    
+    videoRoom.on('participantJoined', (participant) => {})
+    
+### participantJoined
+This will be fired when someone has left room
+
+    videoRoom.on('participantDisconnected', (participant) => {})
