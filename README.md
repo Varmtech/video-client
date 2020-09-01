@@ -97,9 +97,6 @@ Events can be listened by attaching listeners to `VideoRoom`
 this will be fired when someone in the room use `sendInfo\`
 
     VideoRoom.on("infoRecieved", (infoData) => {})
-  - participantJoined: someone joined to room
-  - participantDisconnected: someone leaved room
-  
 ### participantJoined
 This will be fired when someone joined to room
     
