@@ -4,13 +4,13 @@
 
 Install the package from the git repository
 
-`npm i https://github.com/Varmtech/video-client.git`
+    npm i https://github.com/Varmtech/video-client.git
 
 ### CDN
 
 Add VideoClient to your root html file from CDN
 
-`<script src="https://cdn.jsdelivr.net/gh/Varmtech/video-client/index.js"></script>`
+    <script src="https://cdn.jsdelivr.net/gh/Varmtech/video-client/index.js"></script>
 
 # Get started
 
@@ -18,31 +18,31 @@ Add VideoClient to your root html file from CDN
 
 Import VideoClient and create a new instance to work with
 
-`import VideoClient from 'video-client'`
+    import VideoClient from 'video-client'
  
-`const videoClient = new VideoClient()`
+    const videoClient = new VideoClient()
  
 
 ### CDN
 
 If VideoClient is added over CDN just create a new instance to work with
 
-`const videoClient = new VideoClient()`
+    const videoClient = new VideoClient()
 
 ### MediaCapture
 
-MediaCapture is a helper utiliy to easily access Camera, Screen Share and Mic streams to be added to the room
+MediaCapture is a helper utility to easily access Camera, Screen Share and Mic streams to be added to the room
 
-`const { MediaCapture } = videoClient`
+    const { MediaCapture } = videoClient
 
-`{ getMediaStream, getScreenMedia, stopStream } = MediaCapture`
+    { getMediaStream, getScreenMedia, stopStream } = MediaCapture
  
-#### Get camera stream and extract audio, video tracks
+#### Getting camera stream and extracting audio, video tracks
 
-`const cameraStream = await getMediaStream()`
+    const cameraStream = await getMediaStream()
 
-`const audioTrack = cameraStream.getAudioTracks()[0]`
-`const videoTrack = cameraStream.getVideoTracks()[0]`
+    const audioTrack = cameraStream.getAudioTracks()[0]
+    const videoTrack = cameraStream.getVideoTracks()[0]
  
 `getMediaStream` function accepts [MediaStreamConstraints](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamConstraints), if not set the default ones will be used
 
@@ -50,7 +50,7 @@ MediaCapture is a helper utiliy to easily access Camera, Screen Share and Mic st
 
 If the room with the given name doesn't exist a new one will be created and automatically joined
 
-`const videoRoom = videoClient.join(token, userId, fullName, roomName, tracks)`
+    const videoRoom = videoClient.join(token, userId, fullName, roomName, tracks)
 
 - token: type: string, authentication token 
 - userId: type: string, user id joining the room
@@ -63,21 +63,48 @@ If the room with the given name doesn't exist a new one will be created and auto
 #### Available room methods
   
 ### replaceVideoTrack
-  you can replace an existing track with another if some track already exists
+    VideoRoom.replaceVideoTrack(videoTrack)
+  videoTrack can be replaced if it exists otherwise you will get error. 
 
 ### addVideoTrack
-  
-  you can add Video Track anytime you want, but you cannot have multiple active video tracks at same time
-  so if you will add a track when you already have it you will get an error
+    VideoRoom.addVideoTrack(videoTrack)
+  videoTrack can be added if there is no videoTrack in a stream.\
+  if we try to add videoTrack when there is active videoTrack\
+  in our stream we will get error.
   
 ### removeVideoTrack
-  can remove videoTrack is it exists
+    VideoRoom.addVideoTrack(videoTrack)
+ videoTrack can be removed the passed videoTrack exists on our stream.
   
 ### sendInfo
-  if you are in room you can send update message about some status you have to room members.
+if you are in room you can send update message about some status you have to room members.
+
+    VideoRoom.sendInfo(userId, roomName, isPresenter, infoData)
+    
+- userId: type: string, user id 
+- roomName: type: string, room name user in
+- isPresenter: type: boolean, is user have presenter flag
+- infoData: type: object, you can send whatever you want
+
+### getParticipants
+    VideoRoom.getParticipants()
+this will return `VideoRoom` participants array
   
 ## Events
-  you can listen various type events on room object like`
-  - infoReceived: if someone sends a message to room with sendInfo you will get it here.
+Events can be listened by attaching listeners to `VideoRoom`
+
+### infoReceived
+this will be fired when someone in the room use `sendInfo\`
+
+    VideoRoom.on("infoRecieved", (infoData) => {})
   - participantJoined: someone joined to room
   - participantDisconnected: someone leaved room
+  
+### participantJoined
+This will be fired when someone joined to room
+    
+    VideoRoom.on("participantJoined", (participant) => {})
+### participantJoined
+This will be fired when someone leaved room
+
+    VideoRoom.on("participantDisconnected", (participant) => {})
