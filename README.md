@@ -77,7 +77,7 @@ If the room with the given name doesn't exist a new one will be created and auto
  videoTrack can be removed the passed videoTrack exists on our stream.
   
 ### sendInfo
-if you are in room you can send update message about some status you have to room members.
+If you are in room you can send update message about some status you have to room members.
 
     VideoRoom.sendInfo(userId, roomName, isPresenter, infoData)
     
@@ -88,13 +88,13 @@ if you are in room you can send update message about some status you have to roo
 
 ### getParticipants
     VideoRoom.getParticipants()
-this will return `VideoRoom` participants array
+This will return `VideoRoom` participants array
   
 ## Events
 Events can be listened by attaching listeners to `VideoRoom`
 
 ### infoReceived
-this will be fired when someone in the room use `sendInfo\`
+This will be fired when someone in the room use `sendInfo\`
 
     VideoRoom.on("infoRecieved", (infoData) => {})
 ### participantJoined
