@@ -60,7 +60,7 @@ If the room with the given name doesn't exist a new one will be created and auto
  
  `join` throws a VideoRoomError in case of a failure or returns `VideoRoom` object containing the list of participants
 
-#### Available room methods
+## Available room methods
   
 ### replaceVideoTrack
     VideoRoom.replaceVideoTrack(videoTrack)
@@ -94,7 +94,7 @@ This will return `VideoRoom` participants array
 Events can be listened by attaching listeners to `VideoRoom`
 
 ### infoReceived
-This will be fired when someone in the room use `sendInfo\`
+This will be fired when someone in the room use `sendInfo`
 
     VideoRoom.on("infoRecieved", (infoData) => {})
 ### participantJoined
