@@ -1,66 +1,72 @@
 # Installation
 
 ### NPM
-run `npm i https://github.com/Varmtech/video-client.git`
+
+Install the package from the git repository
+
+`npm i https://github.com/Varmtech/video-client.git`
 
 ### CDN
-add this to your root html file\
+
+Add VideoClient to your root html file from CDN
+
 `<script src="https://cdn.jsdelivr.net/gh/Varmtech/video-client/index.js"></script>`
 
 # Get started
 
 ### NPM
-use this to import your video client \` \
- `import VideoClient from "video-client"`
+
+Import VideoClient and create a new instance to work with
+
+`import VideoClient from 'video-client'`
  
- then create new Video Client `new VideoClient()`
+`const videoClient = new VideoClient()`
  
-you are ready to use it.
 
 ### CDN
-Once you will add appropriate script in your root html file\
-you can access VideoClient from wherever you want
 
-create new Video `new VideoClient()`
+If VideoClient is added over CDN just create a new instance to work with
 
-you are ready to use it.
-
-## Let's Start
-All our function you can access from an object that you have created before.
+`const videoClient = new VideoClient()`
 
 ### MediaCapture
-is a class from where you can get you video, audio and screen stream
-access \` `{ MediaCapture } = videoClient`\
-`{getMediaStream, getScreenMedia, stopStream} = MediaCapture`
 
-**remember getMediaStream and getScreenMedia**\
- functions are async functions and returns promise which\
- will give you stream you want.
- 
-getMediaStream function is accepting argument [mediastreamconstraints](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamConstraints)
+MediaCapture is a helper utiliy to easily access Camera, Screen Share and Mic streams to be added to the room
 
-### Room
-You can create your Call Room.
-If you want to create or join already exciting room then you can use\`\
-`{ join } = videoClient`
-join function accepts arguments\`\
-- token: type: string, your special token 
-- userId: type: string, your special userId
-- fullName: type: string, your name
-- roomName: type: string, it is room name you want to join
-- tracks: type: object,\
- {audioTracks: type: array, videoTracks: type: array}\
- stream tracks which you will get from MediaCapture
+`const { MediaCapture } = videoClient`
+
+`{ getMediaStream, getScreenMedia, stopStream } = MediaCapture`
  
- join function will return Room object from where you can access\
-  various type methods to handle Room actions. above you can see list`
-  
-  you can replaceVideoTrack, addVideoTrack, removeVideoTrack.
+#### Get camera stream and extract audio, video tracks
+
+`const cameraStream = await getMediaStream()`
+
+`const audioTrack = cameraStream.getAudioTracks()[0]`
+`const videoTrack = cameraStream.getVideoTracks()[0]`
+ 
+`getMediaStream` function accepts [MediaStreamConstraints](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamConstraints), if not set the default ones will be used
+
+### Creating or Joining a Video Room
+
+If the room with the given name doesn't exist a new one will be created and automatically joined
+
+`const videoRoom = videoClient.join(token, userId, fullName, roomName, tracks)`
+
+- token: type: string, authentication token 
+- userId: type: string, user id joining the room
+- fullName: type: string, full name of the user
+- roomName: type: string, room name to join or create
+- tracks: type: object, { audioTrack, videoTrack }
+ 
+ `join` throws a VideoRoomError in case of a failure or returns `VideoRoom` object containing the list of participants
+
+#### Available room methods
   
 ### replaceVideoTrack
   you can replace an existing track with another if some track already exists
 
 ### addVideoTrack
+  
   you can add Video Track anytime you want, but you cannot have multiple active video tracks at same time
   so if you will add a track when you already have it you will get an error
   
