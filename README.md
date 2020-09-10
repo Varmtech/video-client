@@ -22,6 +22,7 @@ Import VideoClient and create a new instance to work with
  
     const videoClient = new VideoClient()
  
+
 ### CDN
 
 If VideoClient is added over CDN just create a new instance to work with
@@ -71,7 +72,7 @@ It is possible to replace the video track on the go, for example change the came
 ### addVideoTrack
 
 If there is no video track added to the room, it can be added later.
-If the track already addded it will throw an error.
+If the track already added it will throw an error.
 
     videoRoom.addVideoTrack(videoTrack)
   
@@ -97,7 +98,32 @@ It is possible to send an update message about some status the room members shou
 Returns an array of joined participants of the room
   
     videoRoom.getParticipants()
+    
+### toggleAudio
+It is possible to enable or disable audio by passing audioTrack to this function.
 
+    videoRoom.toggleAudio(audioTrack)
+## Available participant methods
+### connectToUser
+It is possible to direct call one of room participants.\
+
+    `participant.connectToUser()`
+    
+It is need to be called on participant who you to direct call
+### endCallWithUser
+You can end it anytime you want by using this`
+
+    particpant.endCallWithUser()
+    
+It is need to be called on participant who have direct call with you
+
+### toggleAudioTracksMix
+Also you can mix your voice with participant who have direct call with you and after that room members will be able to listen that participant voice too.
+
+    participant.toggleAudioTracksMix()
+    
+It is need to be called on participant who have direct call with you.
+It also toggles it back.
 ## Events
 Events can be listened by attaching listeners to `VideoRoom`
 
@@ -116,3 +142,13 @@ This will be fired when someone has joined to room
 This will be fired when someone has left room
 
     videoRoom.on('participantDisconnected', (participant) => {})
+    
+### stream
+This will be fired when one of participants added stream
+
+    particpant.on('stream', (stream) => {})
+    
+### directCallEnded
+This will be fired when direct call ends
+
+    participant.on('directCallEnded', () => {})
