@@ -22,7 +22,6 @@ Import VideoClient and create a new instance to work with
  
     const videoClient = new VideoClient()
  
-
 ### CDN
 
 If VideoClient is added over CDN just create a new instance to work with
