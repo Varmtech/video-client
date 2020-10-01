@@ -10,7 +10,7 @@ Install the package from the git repository
 
 Add VideoClient to your root html file from CDN
 
-    <script src="https://cdn.jsdelivr.net/gh/Varmtech/video-client/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Varmtech/video-client@1.0.1/index.js"></script>
 
 # Get started
 
