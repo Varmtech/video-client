@@ -50,13 +50,14 @@ MediaCapture is a helper utility to easily access Camera, Screen Share and Mic s
 
 If the room with the given name doesn't exist a new one will be created and automatically joined
 
-    const videoRoom = videoClient.join(token, userId, fullName, roomName, tracks)
+    const videoRoom = videoClient.join(token, userId, fullName, roomName, tracks, isPresenter)
 
 - token: type: string, authentication token 
 - userId: type: string, user id joining the room
 - fullName: type: string, full name of the user
 - roomName: type: string, room name to join or create
 - tracks: type: object, { audioTrack, videoTrack }
+- isPresenter: type: boolean, user role joining the room
  
  `join` throws a VideoRoomError in case of a failure or returns `VideoRoom` object containing the list of participants
 
