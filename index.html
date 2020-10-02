@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/gh/Varmtech/video-client@1.0.1/lib/index.js"></script>
+
+        <style>
+            .container {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+                flex-direction: column;
+                max-height: 1000px;
+            }
+
+            video {
+                width: 500px;
+                height: 500px;
+                align-self: center;
+            }
+
+            .buttonContainer {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container" id="room">
+            <video id="video1" autoplay></video>
+            <div id="button-container" class="buttonContainer">
+                <button type="button" onclick="getMyMedia()">Get My Media</button>
+                <button type="button" onclick="getScreenMedia()">Get Screen Media</button>
+            </div>
+        </div>
+    </body>
+    <script src="index.js"></script>
+</html>
