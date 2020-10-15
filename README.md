@@ -4,13 +4,13 @@
 
 Install the package from the git repository
 
-    npm i https://github.com/Varmtech/video-client.git
+    npm i https://github.com/Varmtech/video-client.git#1.0.4
 
 ### CDN
 
 Add VideoClient to your root html file from CDN
 
-    <script src="https://cdn.jsdelivr.net/gh/Varmtech/video-client@1.0.3/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Varmtech/video-client@1.0.4/index.js"></script>
 
 # Get started
 
@@ -35,7 +35,7 @@ MediaCapture is a helper utility to easily access Camera, Screen Share and Mic s
 
     const { MediaCapture } = videoClient
 
-    { getMediaStream, getScreenMedia, stopStream } = MediaCapture
+    { getMediaStream, getScreenMedia } = MediaCapture
  
 #### Getting camera stream and extracting audio, video tracks
 
@@ -44,7 +44,8 @@ MediaCapture is a helper utility to easily access Camera, Screen Share and Mic s
     const audioTrack = cameraStream.getAudioTracks()[0]
     const videoTrack = cameraStream.getVideoTracks()[0]
  
-`getMediaStream` function accepts [MediaStreamConstraints](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamConstraints), if not set the default ones will be used
+`getMediaStream` function accepts [MediaStreamConstraints](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamConstraints).
+If provided argument is invalid or argument is not provided it will return error.
 
 ### Creating or Joining a Video Room
 
