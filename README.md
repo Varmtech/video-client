@@ -4,13 +4,13 @@
 
 Install the package from the git repository
 
-    npm i https://github.com/Varmtech/video-client.git#1.0.5
+    npm i https://github.com/Varmtech/video-client.git#1.0.6
 
 ### CDN
 
 Add VideoClient to your root html file from CDN
 
-    <script src="https://cdn.jsdelivr.net/gh/Varmtech/video-client@1.0.5/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Varmtech/video-client@1.0.6/index.js"></script>
 
 # Get started
 
