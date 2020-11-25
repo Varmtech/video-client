@@ -20,8 +20,12 @@ Import VideoClient and create a new instance to work with
 
     import VideoClient from 'video-client'
  
-    const videoClient = new VideoClient()
- 
+    const videoClient = new VideoClient(signalingHost)
+    
+It is possible to define which signaling host to use.
+If given argument is not string it will return error.
+Also, it will work without `signalingHost` this argument.
+It will connect to default host.
 
 ### CDN
 
