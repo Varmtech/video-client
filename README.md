@@ -24,7 +24,7 @@ Import VideoClient and create a new instance to work with
     
 It is possible to define which signaling host to use.
 If given argument is not string it will return error.
-Also, it will work without `signalingHost` this argument.
+Also, it will work without `signalingHost` argument.
 It will connect to default host.
 
 ### CDN
