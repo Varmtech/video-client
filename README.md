@@ -19,6 +19,8 @@ Add VideoClient to your root html file from CDN
 Import VideoClient and create a new instance to work with
 
     import VideoClient from 'video-client'
+    
+    const signaling = "https://signal-uks.classroom.cloud"
  
     const videoClient = new VideoClient(signalingHost)
     
