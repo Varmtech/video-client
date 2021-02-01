@@ -4,7 +4,7 @@
 
 Install the package from the git repository
 
-    npm i https://github.com/Varmtech/video-client.git#1.0.6
+    npm i https://github.com/Varmtech/video-client.git#1.0.7
 
 ### CDN
 
