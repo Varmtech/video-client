@@ -2,21 +2,21 @@
 
 ### NPM
 
-Install the package from the git repository
+Install the package from the git repository.
 
     npm i https://github.com/Varmtech/video-client.git#1.0.7
 
 ### CDN
 
-Add VideoClient to your root html file from CDN
+Add VideoClient to your root html file from CDN.
 
-    <script src="https://cdn.jsdelivr.net/gh/Varmtech/video-client@1.0.6/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Varmtech/video-client@1.0.7/index.js"></script>
 
 # Get started
 
 ### NPM
 
-Import VideoClient and create a new instance to work with
+Import VideoClient and create a new instance to work with.
 
     import VideoClient from 'video-client'
     
@@ -24,20 +24,17 @@ Import VideoClient and create a new instance to work with
  
     const videoClient = new VideoClient(signalingHost)
     
-It is possible to define which signaling host to use.
-If given argument is not string it will return error.
-Also, it will work without `signalingHost` argument.
-It will connect to default host.
+It is possible to define which signaling host to use. The default one is used if no signaling host is provided.
 
 ### CDN
 
-If VideoClient is added over CDN just create a new instance to work with
+If VideoClient is added over CDN just create a new instance to work with.
 
     const videoClient = new VideoClient()
 
 ### MediaCapture
 
-MediaCapture is a helper utility to easily access Camera, Screen Share and Mic streams to be added to the room
+MediaCapture is a helper utility to easily access Camera, Screen Share and Mic streams to be added to the room.
 
     const { MediaCapture } = videoClient
 
@@ -51,11 +48,11 @@ MediaCapture is a helper utility to easily access Camera, Screen Share and Mic s
     const videoTrack = cameraStream.getVideoTracks()[0]
  
 `getMediaStream` function accepts [MediaStreamConstraints](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamConstraints).
-If provided argument is invalid or argument is not provided it will return error.
+If provided argument is invalid or argument is not provided it will return an error.
 
 ### Creating or Joining a Video Room
 
-If the room with the given name doesn't exist a new one will be created and automatically joined
+If the room with the given name doesn't exist, a new one will be created and automatically joined.
 
     const videoRoom = videoClient.join(token, userId, fullName, roomName, tracks, isPresenter)
 
@@ -66,13 +63,13 @@ If the room with the given name doesn't exist a new one will be created and auto
 - tracks: type: object, { audioTrack, videoTrack }
 - isPresenter: type: boolean, user role joining the room
  
- `join` throws a VideoRoomError in case of a failure or returns `VideoRoom` object containing the list of participants
+ `join` throws a VideoRoomError in case of a failure or returns `VideoRoom` object containing the list of participants.
 
 ## Available room methods
   
 ### replaceVideoTrack
 
-It is possible to replace the video track on the go, for example change the camera stream with the screen one
+It is possible to replace the video track on the go, for example change the camera stream with the screen one.
 
     videoRoom.replaceVideoTrack(newVideoTrack)
   
@@ -92,7 +89,7 @@ Previously passed video track can be removed from the room.
   
 ### sendInfo
 
-It is possible to send an update message about some status the room members should be aware of
+It is possible to send an update message about some status the room members should be aware of.
 
     videoRoom.sendInfo(userId, roomName, isPresenter, infoData)
     
@@ -103,7 +100,7 @@ It is possible to send an update message about some status the room members shou
 
 ### getParticipants
 
-Returns an array of joined participants of the room
+Returns an array of joined participants of the room.
   
     videoRoom.getParticipants()
     
@@ -113,17 +110,17 @@ It is possible to enable or disable audio by passing audioTrack to this function
     videoRoom.toggleAudio(audioTrack)
 ## Available participant methods
 ### connectToUser
-It is possible to direct call one of room participants.\
+It is possible to direct call one of room participants.
 
     `participant.connectToUser()`
     
-It is need to be called on participant who you to direct call
+It is need to be called on participant who you to direct call.
 ### endCallWithUser
 You can end it anytime you want by using this`
 
     particpant.endCallWithUser()
     
-It is need to be called on participant who have direct call with you
+It is need to be called on participant who have direct call with you.
 
 ### toggleAudioTracksMix
 Also you can mix your voice with participant who have direct call with you and after that room members will be able to listen that participant voice too.
@@ -142,7 +139,7 @@ This will be fired when someone in the room sends a an update over `sendInfo`
     
 ### participantJoined
 
-This will be fired when someone has joined to room
+This will be fired when someone has joined to room.
     
     videoRoom.on('participantJoined', (participant) => {})
     
@@ -152,11 +149,11 @@ This will be fired when someone has left room
     videoRoom.on('participantDisconnected', (participant) => {})
     
 ### stream
-This will be fired when one of participants added stream
+This will be fired when one of participants added stream.
 
     particpant.on('stream', (stream) => {})
     
 ### directCallEnded
-This will be fired when direct call ends
+This will be fired when direct call ends.
 
     participant.on('directCallEnded', () => {})
