@@ -149,7 +149,7 @@ This will be fired when someone has left room
     videoRoom.on('participantDisconnected', (participant) => {})
     
 ### connectionStateChange
-THis will be fired when participant connection state changes
+This will be fired when participant connection state changes
 
     videoRoom.on('connectionStateChange', (state, participant) => {})
 
