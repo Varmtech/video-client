@@ -4,13 +4,13 @@
 
 Install the package from the git repository.
 
-    npm i https://github.com/Varmtech/video-client.git#1.1.0
+    npm i https://github.com/Varmtech/video-client.git#1.1.1
 
 ### CDN
 
 Add VideoClient to your root html file from CDN.
 
-    <script src="https://cdn.jsdelivr.net/gh/Varmtech/video-client@1.0.9/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Varmtech/video-client@1.1.1/index.js"></script>
 
 # Get started
 
@@ -118,7 +118,7 @@ It is need to be called on participant who you to direct call.
 ### endCallWithUser
 You can end it anytime you want by using this`
 
-    particpant.endCallWithUser()
+    participant.endCallWithUser()
     
 It is need to be called on participant who have direct call with you.
 
@@ -135,7 +135,7 @@ Events can be listened by attaching listeners to `VideoRoom`
 ### infoReceived
 This will be fired when someone in the room sends a an update over `sendInfo`
 
-    videoRoom.on('infoRecieved', (infoData) => {})
+    videoRoom.on('infoReceived', (infoData) => {})
     
 ### participantJoined
 
@@ -143,15 +143,20 @@ This will be fired when someone has joined to room.
     
     videoRoom.on('participantJoined', (participant) => {})
     
-### participantJoined
+### participantDisconnected
 This will be fired when someone has left room
 
     videoRoom.on('participantDisconnected', (participant) => {})
     
+### connectionStateChange
+This will be fired when participant connection state changes
+
+    videoRoom.on('connectionStateChange', (state, participant) => {})
+
 ### stream
 This will be fired when one of participants added stream.
 
-    particpant.on('stream', (stream) => {})
+    participant.on('stream', (stream) => {})
     
 ### directCallEnded
 This will be fired when direct call ends.
